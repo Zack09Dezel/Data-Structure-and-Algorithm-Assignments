@@ -9,7 +9,6 @@ class Node{
         Node(){
             next = NULL;
         }
-
 };
 
 class LinkedList{

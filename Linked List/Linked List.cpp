@@ -20,6 +20,7 @@ class LinkedList{
             head = tail = NULL;
         }
 
+        //Got backslashed because it outputs the "," before the first element, not after.
         // void outputAll(){
         //     Node *tmp = head;
         //     while(tmp != NULL){
@@ -28,6 +29,7 @@ class LinkedList{
         //     }
         // }
 
+        //This is the updated version of the function.
         void outputAll(){
             Node *tmp = head;
             bool First = true; 
@@ -43,6 +45,20 @@ class LinkedList{
             }
         }
 
+        //Got backslashed because it doesn't update the tail in "if (head == NULL)".
+        // head->next is pointing to NULL so it will break the link.
+        // void insertHead(int data){
+        //     Node *node = new Node;
+        //     node -> id = data;
+
+        //     if(head == NULL){
+        //         Node *tmp = head;
+        //         head = node;
+        //         head -> next = tmp;
+        //     }
+        // }
+
+        //This is the updated version of the function.
         void insertHead(int data){
             Node *node = new Node;
             node->id = data;

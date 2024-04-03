@@ -122,8 +122,15 @@ class LinkedList{
                 current = current->next;
             }
 
+            //Added to prevent runtime errors or crashes.
+            if(current == NULL) {
+                cout << "Target not found" << endl;
+                return;
+            }
+    
             prev->next = current->next;
             delete current;
+            current->next = NULL; //Added to prevent memory leak
         }
 
 };

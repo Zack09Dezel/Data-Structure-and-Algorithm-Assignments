@@ -2,37 +2,142 @@
 using namespace std;
 
 class Node{
-public:
-    //in development
+    public: 
+        int id;
+        Node *next;
+
+        Node(){
+            next = NULL;
+        }
+
 };
 
-class LinkedList {
-public:
+class LinkedList{
+    public: 
+        Node *head, *tail;
 
-    LinkedList(){
-        //in development
-    }
+        LinkedList(){
+            head = tail = NULL;
+        }
 
-    void insert(int data){
-        //in development
-    }
+        // void outputAll(){
+        //     Node *tmp = head;
+        //     while(tmp != NULL){
+        //         cout << " > " << tmp -> id;
+        //         tmp = tmp -> next;
+        //     }
+        // }
 
-    void display(){
-        //in development
-    }
+        void outputAll(){
+            Node *tmp = head;
+            bool First = true; 
+
+            while(tmp != NULL){
+                if (First) {
+                    First = false; 
+                }else{
+                    cout << ", ";
+                }
+                cout << tmp->id;
+                tmp = tmp->next;
+            }
+        }
+
+        void insertHead(int data){
+            Node *node = new Node;
+            node->id = data;
+
+            if(head == NULL){
+                head = node;
+                tail = node;
+            }else{
+                node->next = head;
+                head = node;
+            }
+        }
+
+        void insertTail(int data){
+            Node *node = new Node;
+            node -> id = data;
+
+            if(head == NULL){
+                head = tail = node;
+            }else{
+                tail -> next = node;
+                tail = node;
+            }  
+        }
+
+        void insertDataAfter(int data, int after){
+            if(head == NULL){
+                cout << "LinkedList is Empty" << endl;
+            }else if(after == tail->id){
+                insertTail(data);
+            }else{
+                Node *tmp = head;
+                while(tmp != NULL && tmp->id!=after){
+                    tmp = tmp->next;
+                }
+
+                if(tmp == NULL){
+                    cout << "No data" << endl;
+                }else{
+                    Node*newNode = new Node();
+                    newNode->id = data;
+                    
+                    newNode->next = tmp->next;
+                    tmp->next = newNode;
+                }
+            }
+        }
+
+        void deleteData(int target){
+            Node *current = head;
+            Node *prev = NULL;
+
+            if(current != NULL && current->id == target){
+                head = current->next;
+                delete current;
+                return;
+            }
+
+            while(current != NULL && current->id != target){
+                prev = current;
+                current = current->next;
+            }
+
+            prev->next = current->next;
+            delete current;
+        }
+
 };
 
-int main(){
-    LinkedList list;
+int main() {
+    LinkedList *LL = new LinkedList();
 
-    list.insert(1);
-    list.insert(2);
-    list.insert(3);
-    list.insert(4);
-    list.insert(5);
+    LL->insertHead(1);
 
-    cout<<"The elements: "<<endl;
-    list.display();
+    LL->insertTail(2);
+    LL->insertTail(3);
+
+    cout << endl;
+    cout << "All elements: ";
+    LL->outputAll();
+    cout << endl;
+
+    LL->insertDataAfter(4, 2);
+
+    cout << "Elements after insertion: ";
+    LL->outputAll();
+    cout << endl;
+
+    LL->deleteData(2);
+
+    cout << "Elements after deletion: ";
+    LL->outputAll();
+    cout << endl;
+
+    delete LL;
 
     return 0;
 }

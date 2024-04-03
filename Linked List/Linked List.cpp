@@ -123,7 +123,7 @@ class LinkedList{
             }
 
             //Added to prevent runtime errors or crashes.
-            if(current == NULL) {
+            if(current == NULL){
                 cout << "Target not found" << endl;
                 return;
             }
@@ -135,11 +135,10 @@ class LinkedList{
 
 };
 
-int main() {
+int main(){
     LinkedList *LL = new LinkedList();
 
     LL->insertHead(1);
-
     LL->insertTail(2);
     LL->insertTail(3);
 

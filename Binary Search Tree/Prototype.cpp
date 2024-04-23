@@ -42,5 +42,30 @@ class BST {
         void insert(int newKey){
             root = InsertRecursive(newKey, root);
         }
+
+        //Traversal recursive functions
+        void preOrderRecursive(Node* currentRoot){
+            if (currentRoot != NULL){
+                cout << currentRoot->key << " ";
+                preOrderRecursive(root->left);
+                preOrderRecursive(root->right);
+            }
+        }
+
+        void inOrderRecursive(Node* currentRoot){
+            if (currentRoot != NULL){
+                inOrderRecursive(root->left);
+                cout << currentRoot->key << " ";
+                inOrderRecursive(root->right);
+            }
+        }
+
+        void postOrderRecursive(Node* currentRoot){
+            if (currentRoot != NULL){
+                postOrderRecursive(root->left);
+                postOrderRecursive(root->right);
+                cout << currentRoot->key << " ";
+            }
+        }
 };
 

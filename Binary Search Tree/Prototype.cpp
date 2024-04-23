@@ -69,3 +69,18 @@ class BST {
         }
 };
 
+int main(int argc, char** argv) {
+    BST *bin1 = new BST();
+
+    bin1->insert(1);
+    bin1->insert(5);
+    bin1->insert(2);
+    bin1->insert(4);
+    bin1->insert(7);
+    bin1->insert(9);
+
+    bin1->preOrderRecursive();
+
+    return 0;
+}
+

@@ -44,7 +44,7 @@ class BST {
         }
 
         //Traversal recursive functions
-        void preOrderRecursive(Node* currentRoot){
+        Node *preOrderRecursive(Node* currentRoot){
             if (currentRoot != NULL){
                 cout << currentRoot->key << " ";
                 preOrderRecursive(root->left);
@@ -52,7 +52,8 @@ class BST {
             }
         }
 
-        void inOrderRecursive(Node* currentRoot){
+
+        Node *inOrderRecursive(Node* currentRoot){
             if (currentRoot != NULL){
                 inOrderRecursive(root->left);
                 cout << currentRoot->key << " ";
@@ -60,13 +61,26 @@ class BST {
             }
         }
 
-        void postOrderRecursive(Node* currentRoot){
+        Node *postOrderRecursive(Node* currentRoot){
             if (currentRoot != NULL){
                 postOrderRecursive(root->left);
                 postOrderRecursive(root->right);
                 cout << currentRoot->key << " ";
             }
         }
+
+        void preOrderRecursive(){
+            preOrderRecursive(root);
+        }
+
+        void inOrderRecursive(){
+            inOrderRecursive(root);
+        }
+
+        void postOrderRecursive(){
+            postOrderRecursive(root);
+        }
+
 };
 
 int main(int argc, char** argv) {

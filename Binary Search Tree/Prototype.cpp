@@ -2,85 +2,82 @@
 using namespace std;
 
 class Node {
-    public:
-        int key;
-        Node *left;
-        Node *right;
+public:
+    int key;
+    Node *left;
+    Node *right;
 
-        Node(){
-            left = right = NULL;
-        }
+    Node() {
+        left = right = NULL;
+    }
 };
 
 class BST {
-    public:
-        Node *root;
+public:
+    Node *root;
 
-        BST(){
-            root = NULL;
+    BST() {
+        root = NULL;
+    }
+
+    Node *InsertRecursive(int newKey, Node *currentRoot) {
+        // Insert the value
+        if (currentRoot == NULL) {
+            Node *newNode = new Node();
+            newNode->key = newKey;
+            return newNode;
         }
 
-        Node *InsertRecursive(int newKey, Node *currentRoot){
-
-            //Insert the value
-            if (root == NULL){
-                Node *newNode = new Node();
-                newNode->key = newKey;
-                return newNode;
-            }
-
-            //Traversal to the left and right
-            if (newKey < currentRoot->key){
-                currentRoot->left = InsertRecursive(newKey, currentRoot->left);
-            }else if (newKey > currentRoot->key){
-                currentRoot->right = InsertRecursive(newKey, currentRoot->right);
-            }
-            return currentRoot;
+        // Traversal to the left and right
+        if (newKey < currentRoot->key) {
+            currentRoot->left = InsertRecursive(newKey, currentRoot->left);
+        } else if (newKey > currentRoot->key) {
+            currentRoot->right = InsertRecursive(newKey, currentRoot->right);
         }
+        return currentRoot;
+    }
 
-        //Initialize the first root as the current root
-        void insert(int newKey){
-            root = InsertRecursive(newKey, root);
+    // Initialize the first root as the current root
+    void insert(int newKey) {
+        root = InsertRecursive(newKey, root);
+    }
+
+    // Traversal recursive functions
+    void preOrderRecursive(Node* currentRoot) {
+        if (currentRoot != NULL) {
+            cout << currentRoot->key << " ";
+            preOrderRecursive(currentRoot->left);
+            preOrderRecursive(currentRoot->right);
         }
+    }
 
-        //Traversal recursive functions
-        Node *preOrderRecursive(Node* currentRoot){
-            if (currentRoot != NULL){
-                cout << currentRoot->key << " ";
-                preOrderRecursive(root->left);
-                preOrderRecursive(root->right);
-            }
+    void inOrderRecursive(Node* currentRoot) {
+        if (currentRoot != NULL) {
+            inOrderRecursive(currentRoot->left);
+            cout << currentRoot->key << " ";
+            inOrderRecursive(currentRoot->right);
         }
+    }
 
-
-        Node *inOrderRecursive(Node* currentRoot){
-            if (currentRoot != NULL){
-                inOrderRecursive(root->left);
-                cout << currentRoot->key << " ";
-                inOrderRecursive(root->right);
-            }
+    void postOrderRecursive(Node* currentRoot) {
+        if (currentRoot != NULL) {
+            postOrderRecursive(currentRoot->left);
+            postOrderRecursive(currentRoot->right);
+            cout << currentRoot->key << " ";
         }
+    }
 
-        Node *postOrderRecursive(Node* currentRoot){
-            if (currentRoot != NULL){
-                postOrderRecursive(root->left);
-                postOrderRecursive(root->right);
-                cout << currentRoot->key << " ";
-            }
-        }
+    void preOrderRecursive() {
+        preOrderRecursive(root);
+    }
 
-        void preOrderRecursive(){
-            preOrderRecursive(root);
-        }
+    void inOrderRecursive() {
+        inOrderRecursive(root);
+    }
 
-        void inOrderRecursive(){
-            inOrderRecursive(root);
-        }
-
-        void postOrderRecursive(){
-            postOrderRecursive(root);
-        }
-
+    void postOrderRecursive() {
+        postOrderRecursive(root);
+    }
 };
 
 int main(int argc, char** argv) {
@@ -93,8 +90,17 @@ int main(int argc, char** argv) {
     bin1->insert(7);
     bin1->insert(9);
 
+    cout << "Pre-Order traversal: ";
     bin1->preOrderRecursive();
+    cout << endl;
+
+    cout << "In-Order traversal: ";
+    bin1->inOrderRecursive();
+    cout << endl;
+
+    cout << "Post-Order traversal: ";
+    bin1->postOrderRecursive();
+    cout << endl;
 
     return 0;
 }
-
